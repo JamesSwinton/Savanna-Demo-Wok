@@ -3,4 +3,10 @@
   <color name="colorPrimary">#0485DF</color>
   <color name="colorPrimaryDark">#026DB6</color>
   <color name="colorAccent">#D81B60</color>
+
+  <!-- Custom Dialog Colours -->
+  <color name="success">#4CAF50</color>
+  <color name="info">#0485DF</color>
+  <color name="warn">#FF7043</color>
+  <color name="error">#E6302D</color>
 </resources>
