@@ -34,14 +34,17 @@ dependencies {
 
     // Google Libs
     implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.1.0-alpha08'
 
     // HTTP Libs
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
     // Json Lib
     implementation 'com.google.code.gson:gson:2.8.5'
 
     // Image Processing Lib
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }
