@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.zebra.jamesswinton.savannademowok.network.RetrofitInstance;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,9 +56,8 @@ public class CreateBarcodeFragment extends Fragment {
     // Required empty public constructor
   }
 
-
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     mDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_barcode, container,
         false);
@@ -71,7 +72,9 @@ public class CreateBarcodeFragment extends Fragment {
     mBarcodeEndPointApi = RetrofitInstance.getInstance().create(BarcodeEndPointsApi.class);
 
     // Set Toolbar
-    getActivity().setTitle("Create Barcode API");
+    if (getActivity() != null) {
+      getActivity().setTitle("Create Barcode API");
+    }
 
     // Init Spinners (Adapter & Listener)
     initSymbologySpinner();
@@ -90,8 +93,9 @@ public class CreateBarcodeFragment extends Fragment {
 
       // Data Valid -> Execute HTTP Request
       mBarcodeEndPointApi.createBarcode(App.API_KEY,
-          mSymbology, mDataBinding.barcodeData.getText().toString(), null, null,
-          mScale, mRotate, mShowExtraBarcodeData).enqueue(createBarcodeCallback);
+          mSymbology, Objects.requireNonNull(mDataBinding.barcodeData.getText()).toString(),
+          null, null, mScale, mRotate, mShowExtraBarcodeData)
+          .enqueue(createBarcodeCallback);
 
       // Show Progress Bar On Activity
       ((MainActivity) getActivity()).showProgressBar(true);
@@ -106,7 +110,9 @@ public class CreateBarcodeFragment extends Fragment {
     @Override
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
       // Hide Progress Bar
-      ((MainActivity) getActivity()).showProgressBar(false);
+      if (getActivity() != null) {
+        ((MainActivity) getActivity()).showProgressBar(false);
+      }
 
       // Validate HTTP Response (200, 404, etc...)
       if (!response.isSuccessful()) {
@@ -134,7 +140,9 @@ public class CreateBarcodeFragment extends Fragment {
     @Override
     public void onFailure(Call<ResponseBody> call, Throwable t) {
       // Hide Progress Bar
-      ((MainActivity) getActivity()).showProgressBar(false);
+      if (getActivity() != null) {
+        ((MainActivity) getActivity()).showProgressBar(false);
+      }
 
       // Log Error
       Log.e(TAG, "onResponse: Unsuccessful - " + t.getMessage(), t);
