@@ -146,6 +146,11 @@ public class CreateBarcodeFragment extends Fragment {
 
       // Log Error
       Log.e(TAG, "onResponse: Unsuccessful - " + t.getMessage(), t);
+
+      // Show dialog
+      CustomDialog.showCustomDialog(getActivity(), DialogType.ERROR,
+          "HTTP Request Failed!",
+          "The server returned an unsuccessful response: " + t.getMessage());
     }
   };
 
