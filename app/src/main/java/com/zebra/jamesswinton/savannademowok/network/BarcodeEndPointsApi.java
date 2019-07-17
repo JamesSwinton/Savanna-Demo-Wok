@@ -1,5 +1,6 @@
 package com.zebra.jamesswinton.savannademowok.network;
 
+import com.zebra.jamesswinton.savannademowok.barcodeintelligence.pojos.UpcProduct;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,10 +23,10 @@ public interface BarcodeEndPointsApi {
   );
 
   // Barcode Lookup
-//  @GET("barcode/lookup/")
-//  Call<UpcProduct> findBarcode(
-//      @Header("apikey") String apiKey,
-//      @Query("upc") String barcode
-//  );
+  @GET("barcode/lookup/")
+  Call<UpcProduct> upcLookup(
+      @Header("apikey") String apiKey,
+      @Query("upc") String barcode
+  );
 
 }
