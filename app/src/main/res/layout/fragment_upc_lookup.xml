@@ -82,7 +82,7 @@
             android:layout_height="0dp"
             android:layout_weight="8"
             android:tint="#9E9E9E"
-            android:src="@drawable/ic_search"/>
+            android:src="@drawable/ic_search_barcode"/>
 
           <TextView
             android:layout_width="match_parent"
