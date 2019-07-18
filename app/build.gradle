@@ -32,6 +32,10 @@ dependencies {
     // EMDK
     implementation 'com.symbol:emdk:7.3.14'
 
+    // Zebra X'ing
+    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    implementation 'com.google.zxing:core:3.2.0'
+
     // Google Libs
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -47,4 +51,13 @@ dependencies {
 
     // Image Processing Lib
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    // Permissions
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    // WebView (CSS Enabled)
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
 }
