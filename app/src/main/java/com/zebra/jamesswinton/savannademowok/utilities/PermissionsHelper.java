@@ -1,4 +1,4 @@
-package com.zebra.jamesswinton.savannademowok;
+package com.zebra.jamesswinton.savannademowok.utilities;
 
 import android.app.Activity;
 import pub.devrel.easypermissions.EasyPermissions;

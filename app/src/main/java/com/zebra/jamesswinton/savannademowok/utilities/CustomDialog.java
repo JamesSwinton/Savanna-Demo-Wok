@@ -1,4 +1,4 @@
-package com.zebra.jamesswinton.savannademowok;
+package com.zebra.jamesswinton.savannademowok.utilities;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.zebra.jamesswinton.savannademowok.R;
 import com.zebra.jamesswinton.savannademowok.databinding.LayoutCustomDialogBinding;
 
 public class CustomDialog {
