@@ -80,11 +80,6 @@
             android:enabled="false"/>
 
           <item
-            android:id="@+id/send_print_job"
-            android:title="Send Print Job"
-            android:enabled="false" />
-
-          <item
             android:id="@+id/get_printer_details"
             android:title="Get Printer Details"
             android:enabled="false"/>
@@ -93,6 +88,11 @@
             android:id="@+id/get_printer_odometer"
             android:title="Get Printer Odometer"
             android:enabled="false"/>
+
+          <item
+            android:id="@+id/send_print_job"
+            android:title="Send Print Job"
+            android:enabled="false" />
 
         </group>
 
