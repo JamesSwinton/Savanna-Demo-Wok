@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:orientation="horizontal"
-    android:background="@drawable/navigation_header_background">
+    android:background="@drawable/navigation_drawer_header">
 
   </LinearLayout>
 
