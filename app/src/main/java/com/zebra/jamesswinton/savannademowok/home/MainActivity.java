@@ -27,6 +27,7 @@ import com.zebra.jamesswinton.savannademowok.R;
 import com.zebra.jamesswinton.savannademowok.barcodeintelligence.CreateBarcodeFragment;
 import com.zebra.jamesswinton.savannademowok.barcodeintelligence.UpcLookupFragment;
 import com.zebra.jamesswinton.savannademowok.databinding.ActivityMainBinding;
+import com.zebra.jamesswinton.savannademowok.printers.GetAllPrintersFragment;
 import com.zebra.jamesswinton.savannademowok.scanning.DataWedgeUtilities;
 import com.zebra.jamesswinton.savannademowok.scanning.ScannerInterface;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -125,11 +126,38 @@ public class MainActivity extends AppCompatActivity {
 
       // Switch Fragment
       switch(menuItem.getItemId()) {
+        // Barcode Intelligence
         case R.id.create_barcode:
           fragment = new CreateBarcodeFragment();
           break;
         case R.id.upc_lookup:
           fragment = new UpcLookupFragment();
+          break;
+        // FDA Recall
+        case R.id.get_food_recall_upc:
+
+          break;
+        case R.id.get_drug_recall_upc:
+
+          break;
+        case R.id.get_drug_recall_description:
+
+          break;
+        case R.id.get_device_recall_description:
+
+          break;
+        // Printer
+        case R.id.get_all_printers:
+          fragment = new GetAllPrintersFragment();
+          break;
+        case R.id.get_printer_details:
+
+          break;
+        case R.id.get_printer_odometer:
+
+          break;
+        case R.id.send_print_job:
+
           break;
       }
 
@@ -182,15 +210,6 @@ public class MainActivity extends AppCompatActivity {
       @NonNull int[] grantResults) {
     // Forward results to EasyPermissions
     EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-  }
-
-  private void showDialogOK(DialogInterface.OnClickListener okListener) {
-    new AlertDialog.Builder(this)
-        .setMessage("All Permissions are required to run this app")
-        .setPositiveButton("OK", okListener)
-        .setNegativeButton("Cancel", okListener)
-        .create()
-        .show();
   }
 
   /**
