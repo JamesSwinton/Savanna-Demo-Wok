@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  tools:context=".barcodeintelligence.UpcLookupFragment">
+
+  <FrameLayout
+    android:id="@+id/base_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp">
+
+    <LinearLayout
+      android:id="@+id/product_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+          android:id="@+id/barcode_icon"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:padding="8dp"
+          android:src="@drawable/ic_qr_code"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:id="@+id/barcode_layout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="8"
+          android:hint="Barcode *">
+
+          <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/barcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="773289137735"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+          android:id="@+id/scan_with_camera_button"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:src="@drawable/ic_scan_with_camera"/>
+
+      </LinearLayout>
+
+      <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:id="@+id/create_barcode_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="SEARCH"/>
+
+        <LinearLayout
+          android:id="@+id/empty_layout"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          tools:visibility="gone">
+
+          <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:tint="#9E9E9E"
+            android:src="@drawable/ic_search"/>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="14pt"
+            android:layout_margin="4dp"
+            android:text="Please scan or enter a barcode to lookup a product"/>
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="5dp"
+              android:layout_marginEnd="5dp"
+              android:layout_marginBottom="10dp"
+              android:textColor="@color/colorPrimary"
+              android:textStyle="bold"
+              android:text="Details"/>
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="10dp"
+              android:layout_marginStart="5dp"
+              android:layout_marginEnd="5dp"
+              app:cardCornerRadius="4dp"
+              app:cardElevation="4dp">
+
+              <LinearLayout
+                android:id="@+id/product_header_layout"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                  android:id="@+id/product_main_image"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="2"
+                  android:padding="4dp"
+                  tools:src="@drawable/navigation_drawer_background"/>
+
+                <LinearLayout
+                  android:id="@+id/title_and_description_layout"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:layout_weight="8"
+                  android:padding="5dp"
+                  android:weightSum="10">
+
+                  <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                      android:id="@+id/product_title"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:textSize="8pt"
+                      android:textStyle="bold"
+                      android:singleLine="true"
+                      android:maxLines="1"
+                      android:scrollbars="horizontal"
+                      android:gravity="center_vertical"
+                      tools:text="Men's Canada Goose 'Expedition' Relaxed Fit Down Parka, Size Large - Blue"/>
+
+                  </HorizontalScrollView>
+
+                  <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                      android:id="@+id/product_description"
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="7"
+                      android:minLines="1"
+                      android:maxLines="4"
+                      android:scrollbars="horizontal"
+                      android:gravity="center_vertical"
+                      android:inputType="textMultiLine"
+                      tools:text="Originally designed for scientists at McMurdo Station in Antarctica, an iconic thigh-length parka insulated with 625-down fill offers extreme weather protection for all winter adventurers. A rugged water-resistant shell stands the test of time, while a superior 625-fill-power down blend offers incomparable warmth when temperatures plummet. A lush ring of genuine natural coyote fur tops the attached hood. Four roomy cargo pockets in front and one on the sleeve keep your gear close at hand. Color(s): black, ..."/>
+
+                    <TextView
+                      android:id="@+id/product_lowest_price"
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="3"
+                      android:textSize="8pt"
+                      android:textStyle="bold"
+                      android:singleLine="true"
+                      android:gravity="center"
+                      android:scrollbars="horizontal"
+                      android:padding="2dp"
+                      tools:text="£179.99"/>
+
+                  </LinearLayout>
+
+                </LinearLayout>
+
+              </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="5dp"
+              android:layout_marginEnd="5dp"
+              android:layout_marginBottom="10dp"
+              android:textColor="@color/colorPrimary"
+              android:textStyle="bold"
+              android:text="Images"/>
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="10dp"
+              android:layout_marginStart="5dp"
+              android:layout_marginEnd="5dp"
+              app:cardCornerRadius="4dp"
+              app:cardElevation="4dp">
+
+              <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imagesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="5dp"
+              android:layout_marginEnd="5dp"
+              android:layout_marginBottom="10dp"
+              android:textColor="@color/colorPrimary"
+              android:textStyle="bold"
+              android:text="Offers"/>
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="10dp"
+              android:layout_marginStart="5dp"
+              android:layout_marginEnd="5dp"
+              app:cardCornerRadius="4dp"
+              app:cardElevation="4dp">
+
+              <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/offersRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            </androidx.cardview.widget.CardView>
+
+          </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+      </LinearLayout>
+
+  </FrameLayout>
+
+</layout>
