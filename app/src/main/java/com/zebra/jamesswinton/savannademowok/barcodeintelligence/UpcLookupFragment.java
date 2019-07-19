@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 import com.zebra.jamesswinton.savannademowok.App;
 import com.zebra.jamesswinton.savannademowok.utilities.CustomDialog;
 import com.zebra.jamesswinton.savannademowok.utilities.CustomDialog.DialogType;
@@ -216,23 +217,34 @@ public class UpcLookupFragment extends Fragment {
 
   private void populateProductHeader(UpcItem item) {
     // Get Currency
-    String currency = (item.getOffers().get(0).getCurrency()== null
-        || item.getOffers().get(0).getCurrency().equals("")
-        ? "$" : item.getOffers().get(0).getCurrency());
+    String currency;
+    if (item.getOffers().isEmpty() || TextUtils.isEmpty(item.getOffers().get(0).getCurrency())) {
+      currency = "$";
+    } else {
+      currency = item.getOffers().get(0).getCurrency();
+    }
 
     // Init Price Format
-    DecimalFormat mPriceFormat = new DecimalFormat(currency + "#");
+    DecimalFormat mPriceFormat = new DecimalFormat(currency + "#.#");
     mPriceFormat.setMinimumFractionDigits(2);
 
     // Populate UI Elements
     mDataBinding.productTitle.setText(item.getTitle());
     mDataBinding.productDescription.setText(item.getDescription());
     mDataBinding.productLowestPrice.setText(mPriceFormat.format(item.getLowestRecordedPrice()));
-    Picasso.get()
-        .load(item.getImages().get(0))
-        .placeholder(R.drawable.ic_loading_image_placeholder)
-        .error(R.drawable.ic_missing_image_placeholder)
-        .into(mDataBinding.productMainImage);
+    if (item.getImages().isEmpty()) {
+      Picasso.get()
+          .load(R.drawable.ic_missing_image_placeholder)
+          .placeholder(R.drawable.ic_loading_image_placeholder)
+          .error(R.drawable.ic_missing_image_placeholder)
+          .into(mDataBinding.productMainImage);
+    } else {
+      Picasso.get()
+          .load(item.getImages().get(0))
+          .placeholder(R.drawable.ic_loading_image_placeholder)
+          .error(R.drawable.ic_missing_image_placeholder)
+          .into(mDataBinding.productMainImage);
+    }
   }
 
   private void populateProductImages(UpcItem item) {
