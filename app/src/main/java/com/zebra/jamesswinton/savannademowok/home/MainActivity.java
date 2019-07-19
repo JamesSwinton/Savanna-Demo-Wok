@@ -62,13 +62,13 @@ public class MainActivity extends AppCompatActivity {
     mFragmentManager = getSupportFragmentManager();
 
     // Show Video Fragment
+    MainFragment mainFragment = new MainFragment();
     mFragmentManager.beginTransaction()
-        .replace(R.id.content_frame, new MainFragment())
+        .replace(R.id.content_frame, mainFragment)
         .commit();
 
-    // Configure DataWedge
+    // Configure DataWedge Receiver
     if (mZebraDevice) {
-      configureDataWedgeProfile();
       mIntentFilter.addAction(DATAWEDGE_SCAN_ACTION);
     }
 
@@ -250,13 +250,6 @@ public class MainActivity extends AppCompatActivity {
   /**
    * DataWedge Scanner Methods
    */
-
-  private void configureDataWedgeProfile() {
-    //  Create a profile for the data capture application
-    DataWedgeUtilities.CreateProfile(getApplicationContext());
-    // Set Profile Configuration
-    DataWedgeUtilities.SetProfileConfig(this);
-  }
 
   private BroadcastReceiver dwBroadcastReceiver = new BroadcastReceiver() {
 
