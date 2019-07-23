@@ -197,7 +197,13 @@ public class MainActivity extends AppCompatActivity {
     switch(item.getItemId()) {
       case android.R.id.home:
         mDataBinding.drawerLayout.openDrawer(GravityCompat.START);
-        return true;
+        break;
+      case R.id.settings:
+        mFragmentManager.beginTransaction()
+            .replace(R.id.content_frame, new SettingsFragment())
+            .addToBackStack("SETTINGS")
+            .commit();
+        break;
     } return true;
   }
 
