@@ -11,18 +11,9 @@ public class DataWedgeUtilities {
   //  DataWedge API
   public static final String PROFILE_NAME = "SavannaDemoWok";
   public static final String ACTION_DATAWEDGE_FROM_6_2 = "com.symbol.datawedge.api.ACTION";
-  private static final String EXTRA_SOFTSCANTRIGGER_FROM_6_3 = "com.symbol.datawedge.api.SOFT_SCAN_TRIGGER";
   private static final String EXTRA_SET_CONFIG = "com.symbol.datawedge.api.SET_CONFIG";
   private static final String EXTRA_CREATE_PROFILE = "com.symbol.datawedge.api.CREATE_PROFILE";
   public static final String DATAWEDGE_SCAN_ACTION = "com.darryncampbell.datacapture.ACTION";
-
-  public static void SoftScanTrigger(Context context, boolean bScan) {
-    if (bScan) {
-      sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE_FROM_6_2, EXTRA_SOFTSCANTRIGGER_FROM_6_3, "START_SCANNING", context);
-    } else {
-      sendDataWedgeIntentWithExtra(ACTION_DATAWEDGE_FROM_6_2, EXTRA_SOFTSCANTRIGGER_FROM_6_3, "STOP_SCANNING", context);
-    }
-  }
 
   private static void sendDataWedgeIntentWithExtra(String action, String extraKey, String extraValue, Context context) {
     Intent dwIntent = new Intent();
@@ -63,7 +54,7 @@ public class DataWedgeUtilities {
     Bundle profileConfig = new Bundle();
     profileConfig.putString("PROFILE_NAME", PROFILE_NAME);
     profileConfig.putString("PROFILE_ENABLED", "false");
-    profileConfig.putString("CONFIG_MODE", "UPDATE");
+    profileConfig.putString("CONFIG_MODE", "CREATE_IF_NOT_EXIST");
 
     // Create Associated App Bundle
     Bundle appConfig = new Bundle();
