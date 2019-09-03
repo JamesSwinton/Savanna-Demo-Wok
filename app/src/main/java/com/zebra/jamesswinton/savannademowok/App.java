@@ -13,6 +13,8 @@ public class App extends Application {
   // Constants
   private static final String API_KEY_PREF = "api_key";
 
+  public static final String ARG_HOME_PAGE_URL = "Home-Page-URL";
+  public static final String ARG_PRINTER_SERIAL = "Printer-Serial";
 
   // Static Variables
 
@@ -29,6 +31,10 @@ public class App extends Application {
     // Init Preferences
     initPreferences();
   }
+
+  /**
+   * DataWedge Helper Methods
+   */
 
   private void initDataWedge() {
     //  Create a profile for the data capture application
