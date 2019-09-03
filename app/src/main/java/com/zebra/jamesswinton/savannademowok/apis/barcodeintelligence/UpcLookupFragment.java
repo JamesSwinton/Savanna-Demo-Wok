@@ -1,4 +1,4 @@
-package com.zebra.jamesswinton.savannademowok.barcodeintelligence;
+package com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence;
 
 import android.Manifest.permission;
 import android.os.Bundle;
@@ -16,8 +16,9 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 import com.zebra.jamesswinton.savannademowok.App;
+import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.pojos.UPCProduct.UpcItem.UpcItemOffers;
+import com.zebra.jamesswinton.savannademowok.home.SettingsFragment;
 import com.zebra.jamesswinton.savannademowok.utilities.CustomDialog;
 import com.zebra.jamesswinton.savannademowok.utilities.CustomDialog.DialogType;
 import com.zebra.jamesswinton.savannademowok.home.MainActivity;
@@ -25,12 +26,15 @@ import com.zebra.jamesswinton.savannademowok.utilities.PermissionsHelper;
 import com.zebra.jamesswinton.savannademowok.R;
 import com.zebra.jamesswinton.savannademowok.scanning.DataWedgeUtilities;
 import com.zebra.jamesswinton.savannademowok.scanning.ScannerInterface;
-import com.zebra.jamesswinton.savannademowok.barcodeintelligence.pojos.UpcProduct;
-import com.zebra.jamesswinton.savannademowok.barcodeintelligence.pojos.UpcProduct.UpcItem;
+import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.pojos.UPCProduct;
+import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.pojos.UPCProduct.UpcItem;
 import com.zebra.jamesswinton.savannademowok.databinding.FragmentUpcLookupBinding;
 import com.zebra.jamesswinton.savannademowok.network.BarcodeEndPointsApi;
 import com.zebra.jamesswinton.savannademowok.network.RetrofitInstance;
 import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,6 +89,11 @@ public class UpcLookupFragment extends Fragment {
     mDataBinding.createBarcodeButton.setOnClickListener(view -> {
       // Validate Data
       if (!validateFormData()) {
+        return;
+      }
+
+      // Validate API Key
+      if (!validateApiKey()) {
         return;
       }
 
@@ -169,7 +178,7 @@ public class UpcLookupFragment extends Fragment {
     }
 
     @Override
-    public void onFailure(Call<UpcProduct> call, Throwable t) {
+    public void onFailure(Call<UPCProduct> call, Throwable t) {
       // Hide Progress Bar
       if (getActivity() != null) {
         ((MainActivity) getActivity()).showProgressBar(false);
@@ -283,11 +292,24 @@ public class UpcLookupFragment extends Fragment {
   private boolean validateFormData() {
     // Validate Barcode
     if (TextUtils.isEmpty(mDataBinding.barcode.getText())) {
+      mDataBinding.barcode.setError("Please enter a barcode");
       return false;
     }
 
     // Barcode present -> return true
     return true;
+  }
+
+  private boolean validateApiKey() {
+    if (TextUtils.isEmpty(App.getApiKey())) {
+      CustomDialog.showCustomDialog(getActivity(), DialogType.ERROR, "Api Key Missing!",
+          "You have not set an API key in the settings page. You cannot test any API's without an API key",
+          "OPEN SETTINGS", (dialogInterface, i) ->
+              ((MainActivity) getActivity()).addFragmentToBackStack(new SettingsFragment(),
+                  "SETTINGS"),
+          "CANCEL", (dialogInterface, i) -> dialogInterface.dismiss());
+      return false;
+    } return true;
   }
 
   /**
