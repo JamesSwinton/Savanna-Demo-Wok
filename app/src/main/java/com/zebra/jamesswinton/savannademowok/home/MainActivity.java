@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     // Show Video Fragment
     MainFragment mainFragment = new MainFragment();
     mFragmentManager.beginTransaction()
-        .replace(R.id.content_frame, mainFragment)
-        .commit();
+            .replace(R.id.content_frame, mainFragment)
+            .commit();
 
     // Configure DataWedge Receiver
     if (mZebraDevice) {
@@ -151,6 +151,26 @@ public class MainActivity extends AppCompatActivity {
 
       // Switch Fragment
       switch(menuItem.getItemId()) {
+        // Home / General / Info
+        case R.id.home:
+          fragment = new MainFragment();
+          break;
+        case R.id.home_developer_portal:
+          fragment = new MainFragment();
+
+          // Create  Set Fragment Arguments
+          Bundle homeUrlDevPortal = new Bundle();
+          homeUrlDevPortal.putString(App.ARG_HOME_PAGE_URL, DEV_PORTAL_URL);
+          fragment.setArguments(homeUrlDevPortal);
+          break;
+        case R.id.home_savanna_get_started:
+          fragment = new MainFragment();
+
+          // Create  Set Fragment Arguments
+          Bundle homeUrlApiPage = new Bundle();
+          homeUrlApiPage.putString(App.ARG_HOME_PAGE_URL, SAVANNA_GETTING_STARTED_URL);
+          fragment.setArguments(homeUrlApiPage);
+          break;
         // Barcode Intelligence
         case R.id.create_barcode:
           fragment = new CreateBarcodeFragment();
@@ -160,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
           break;
         // FDA Recall
         case R.id.get_food_recall_upc:
-
+          fragment = new GetFoodRecallByUpcFragment();
           break;
         case R.id.get_drug_recall_upc:
 
@@ -182,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
           break;
         case R.id.send_print_job:
-
+          fragment = new SendPrintJobFragment();
           break;
       }
 
