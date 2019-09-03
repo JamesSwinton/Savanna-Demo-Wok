@@ -4,6 +4,10 @@
   <color name="colorPrimaryDark">#026DB6</color>
   <color name="colorAccent">#D81B60</color>
 
+  <!-- Generic Grey -->
+  <color name="grey">#444444</color>
+  <color name="disabled_grey">#A3A2A2</color>
+
   <!-- Custom Dialog Colours -->
   <color name="success">#4CAF50</color>
   <color name="info">#0485DF</color>
