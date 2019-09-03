@@ -1,4 +1,4 @@
-package com.zebra.jamesswinton.savannademowok.barcodeintelligence;
+package com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zebra.jamesswinton.savannademowok.App;
+import com.zebra.jamesswinton.savannademowok.home.SettingsFragment;
 import com.zebra.jamesswinton.savannademowok.utilities.CustomDialog;
 import com.zebra.jamesswinton.savannademowok.utilities.CustomDialog.DialogType;
 import com.zebra.jamesswinton.savannademowok.home.MainActivity;
@@ -89,8 +91,13 @@ public class CreateBarcodeFragment extends Fragment {
         return;
       }
 
+      // Validate API Key
+      if (!validateApiKey()) {
+        return;
+      }
+
       // Data Valid -> Execute HTTP Request
-      mBarcodeEndPointApi.createBarcode(App.API_KEY,
+      mBarcodeEndPointApi.createBarcode(App.getApiKey(),
           mSymbology, Objects.requireNonNull(mDataBinding.barcodeData.getText()).toString(),
           null, null, mScale, mRotate, mShowExtraBarcodeData)
           .enqueue(createBarcodeCallback);
@@ -272,5 +279,17 @@ public class CreateBarcodeFragment extends Fragment {
 
     // All other fields are optional -> return true
     return true;
+  }
+
+  private boolean validateApiKey() {
+    if (TextUtils.isEmpty(App.getApiKey())) {
+      CustomDialog.showCustomDialog(getActivity(), DialogType.ERROR, "Api Key Missing!",
+          "You have not set an API key in the settings page. You cannot test any API's without an API key",
+          "OPEN SETTINGS", (dialogInterface, i) ->
+              ((MainActivity) getActivity()).addFragmentToBackStack(new SettingsFragment(),
+                  "SETTINGS"),
+          "CANCEL", (dialogInterface, i) -> dialogInterface.dismiss());
+      return false;
+    } return true;
   }
 }
