@@ -98,7 +98,7 @@ public class UpcLookupFragment extends Fragment {
       }
 
       // Data Valid -> Execute HTTP Request
-      mBarcodeEndPointApi.upcLookup(App.API_KEY, mDataBinding.barcode.getText().toString())
+      mBarcodeEndPointApi.upcLookup(App.getApiKey(), mDataBinding.barcode.getText().toString())
       .enqueue(upcLookupCallback);
       // Show Progress Bar On Activity
       ((MainActivity) getActivity()).showProgressBar(true);
@@ -125,9 +125,9 @@ public class UpcLookupFragment extends Fragment {
    * Networking Methods
    */
 
-  private Callback<UpcProduct> upcLookupCallback = new Callback<UpcProduct>() {
+  private Callback<UPCProduct> upcLookupCallback = new Callback<UPCProduct>() {
     @Override
-    public void onResponse(Call<UpcProduct> call, Response<UpcProduct> response) {
+    public void onResponse(Call<UPCProduct> call, Response<UPCProduct> response) {
       // Hide Progress Bar
       if (getActivity() != null) {
         ((MainActivity) getActivity()).showProgressBar(false);
@@ -275,6 +275,9 @@ public class UpcLookupFragment extends Fragment {
       Log.e(TAG, "No Offers Found...");
       return;
     }
+
+    // Order Offers (Lowest -> Highest Price)
+    Collections.sort(item.getOffers(), (x, y) -> Double.compare(x.getPrice(), y.getPrice()));
 
     // Init Adapter & Layout Manager
     UpcProductOffersAdapter upcProductOffersAdapter =
