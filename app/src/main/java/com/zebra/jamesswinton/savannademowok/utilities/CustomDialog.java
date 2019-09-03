@@ -1,10 +1,12 @@
 package com.zebra.jamesswinton.savannademowok.utilities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -46,6 +48,36 @@ public class CustomDialog {
     AlertDialog customAlertDialog = new MaterialAlertDialogBuilder(cx)
         .setView(customDialogView)
         .setPositiveButton("OK", null)
+        .create();
+
+    // Show Dialog
+    customAlertDialog.show();
+  }
+
+  public static void showCustomDialog(Context cx, DialogType type, String title, String message,
+      String positiveButtonText, DialogInterface.OnClickListener positiveClickListener,
+      String negativeButtonText, DialogInterface.OnClickListener negativeClickListener) {
+
+    // Inflate View
+    View customDialogView = LayoutInflater.from(cx).inflate(R.layout.layout_custom_dialog, null);
+
+    // Get View Components
+    RelativeLayout headerLayout = customDialogView.findViewById(R.id.header_layout);
+    ImageView headerIcon = customDialogView.findViewById(R.id.header_icon);
+    TextView titleView = customDialogView.findViewById(R.id.title);
+    TextView messageView = customDialogView.findViewById(R.id.message);
+
+    // Set Component Values
+    headerLayout.setBackgroundColor(getHeaderColor(cx, type));
+    headerIcon.setImageDrawable(getHeaderIcon(cx, type));
+    titleView.setText(Html.fromHtml(title));
+    messageView.setText(Html.fromHtml(message));
+
+    // Create Dialog
+    AlertDialog customAlertDialog = new MaterialAlertDialogBuilder(cx)
+        .setView(customDialogView)
+        .setPositiveButton(positiveButtonText, positiveClickListener)
+        .setNegativeButton(negativeButtonText, negativeClickListener)
         .create();
 
     // Show Dialog
