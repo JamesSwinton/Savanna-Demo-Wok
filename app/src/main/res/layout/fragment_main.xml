@@ -26,5 +26,33 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 
+    <LinearLayout
+        android:id="@+id/no_network_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+      <ImageView
+          android:id="@+id/no_network_image"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="8"
+          android:padding="8dp"
+          android:src="@drawable/ic_no_wifi"/>
+
+      <TextView
+          android:id="@+id/no_network_text"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="2"
+          android:layout_gravity="center"
+          android:gravity="center"
+          android:textSize="14pt"
+          android:layout_margin="4dp"
+          android:text="No network available. You need a network connection to run this application."/>
+
+    </LinearLayout>
+
   </FrameLayout>
 </layout>
