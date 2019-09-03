@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+  <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".apis.printers.GetAllPrintersFragment">
+
+    <LinearLayout
+      android:id="@+id/base_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_margin="10dp"
+      android:orientation="vertical">
+
+      <LinearLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:visibility="gone">
+
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="8"
+          android:tint="#9E9E9E"
+          android:src="@drawable/ic_search_printer"/>
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="2"
+          android:layout_gravity="center"
+          android:gravity="center"
+          android:textSize="14pt"
+          android:layout_margin="4dp"
+          android:text="Getting all printers..."/>
+
+      </LinearLayout>
+
+      <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/printer_details_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/printer_details_recycler_view"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
+
+      </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+  </FrameLayout>
+
+</layout>

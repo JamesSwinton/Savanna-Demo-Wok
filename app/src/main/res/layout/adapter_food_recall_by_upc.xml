@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/base_layout"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginStart="10dp"
+  android:layout_marginEnd="10dp"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/event_meta_data"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:singleLine="true"
+    android:textStyle="bold"
+    android:layout_marginBottom="4dp"
+    tools:text="80531 | Food | F-1753-2018 | Utz Quality Food Inc"/>
+
+  <TextView
+    android:id="@+id/start_end"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:singleLine="true"
+    android:textStyle="bold"
+    android:layout_marginBottom="4dp"
+    tools:text="Start Date: 20180518 | End Date: 20180519"/>
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:textColor="@color/colorPrimary"
+    android:textStyle="bold"
+    android:text="Product Description"/>
+
+  <TextView
+    android:id="@+id/product_description"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    tools:text="utz Carolina Style Barbeque Potato Chips, Net Wt 2.875 OZ,   UTZ Quality Foods, LLV, Hanover, PA 17301, UPC: 0-41780-00153-5;      utz Carolina Style Barbeque Potato Chips, Net Wt 7.5 OZ; UTZ Quality Foods, LLV, Hanover, PA 17301; UPC: 0-41780-00049-1"/>
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:textColor="@color/colorPrimary"
+    android:textStyle="bold"
+    android:text="Recall Notice"/>
+
+  <TextView
+    android:id="@+id/reason_for_recall"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    tools:text="UtzÂ¿ Quality Foods, LLC., is voluntarily recalling select expiration dates of UtzÂ¿ Carolina  Style Barbeque Potato Chips due to undeclared soy allergen."/>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginBottom="8dp"
+    android:background="#444444" />
+
+</LinearLayout>

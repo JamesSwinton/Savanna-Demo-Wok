@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  
+  <androidx.cardview.widget.CardView 
+    android:id="@+id/meta_base_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="#F8D7DA">
+    
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="10dp">
+      
+      <TextView
+        android:id="@+id/disclaimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Disclaimer: Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service."/>
+
+      <ImageView
+        android:id="@+id/dismiss_meta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:tint="#B5797F"
+        android:src="@drawable/ic_close"/>
+
+      <TextView
+        android:id="@+id/last_updated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/disclaimer"
+        android:layout_alignParentEnd="true"
+        android:textStyle="italic"
+        tools:text="Last Updated: 2019-07-13" />
+
+    </RelativeLayout>
+  
+  </androidx.cardview.widget.CardView>
+  
+</layout>

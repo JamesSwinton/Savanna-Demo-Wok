@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <FrameLayout
+    android:id="@+id/base_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+          android:id="@+id/serial_icon"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:padding="8dp"
+          android:src="@drawable/ic_tag"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:id="@+id/serial_number_layout"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="8"
+          android:hint="Printer Serial Number *">
+
+          <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/printer_serial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/default_printer_serial_number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+          android:id="@+id/scan_with_camera_button"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:src="@drawable/ic_scan_with_camera"/>
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+          android:id="@+id/print_data_icon"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:padding="8dp"
+          android:src="@drawable/ic_barcode_data"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="9"
+          android:hint="Content To Print *">
+
+          <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/print_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="3"
+            android:maxLines="15"
+            android:singleLine="false"
+            android:inputType="textMultiLine"
+            android:text="@string/default_zpl"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+      </LinearLayout>
+
+      <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:id="@+id/send_print_job_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PRINT"/>
+
+    </LinearLayout>
+
+  </FrameLayout>
+
+</layout>
