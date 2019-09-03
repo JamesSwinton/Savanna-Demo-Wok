@@ -1,10 +1,10 @@
-package com.zebra.jamesswinton.savannademowok.barcodeintelligence.pojos;
+package com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.pojos;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
-public class UpcProduct {
+public class UPCProduct {
 
   @SerializedName("code")
   @Expose
