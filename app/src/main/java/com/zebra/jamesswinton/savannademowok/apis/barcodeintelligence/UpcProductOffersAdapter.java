@@ -1,21 +1,20 @@
-package com.zebra.jamesswinton.savannademowok.barcodeintelligence;
+package com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import com.squareup.picasso.Picasso;
 import com.zebra.jamesswinton.savannademowok.R;
-import com.zebra.jamesswinton.savannademowok.barcodeintelligence.pojos.UpcProduct.UpcItem.UpcItemOffers;
+import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.pojos.UPCProduct.UpcItem.UpcItemOffers;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class UpcProductOffersAdapter extends RecyclerView.Adapter  {
@@ -63,9 +62,15 @@ public class UpcProductOffersAdapter extends RecyclerView.Adapter  {
       offerMerchant = offer.getMerchant();
     }
 
+    // Get Currency
+    String currency = TextUtils.isEmpty(offer.getCurrency()) ? "$" : offer.getCurrency();
+    DecimalFormat mPriceFormat = new DecimalFormat(currency + "#.#");
+    mPriceFormat.setMinimumFractionDigits(2);
+    String price = mPriceFormat.format(offer.getPrice());
+
     // Get Current BasketItem
     vh.productTitle.setText(offer.getTitle());
-    vh.merchantAndWebsite.setText(offerMerchant + " | " + offer.getDomain());
+    vh.merchantAndWebsite.setText(offerMerchant + " | " + offer.getDomain() + " | " + price);
 
     // Parse URL (Add https:// if needed)
     Uri offerUrl;
