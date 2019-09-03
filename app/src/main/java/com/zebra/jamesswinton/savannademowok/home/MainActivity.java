@@ -4,7 +4,6 @@ import static com.zebra.jamesswinton.savannademowok.scanning.DataWedgeUtilities.
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
@@ -23,12 +22,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.zebra.jamesswinton.savannademowok.App;
 import com.zebra.jamesswinton.savannademowok.R;
-import com.zebra.jamesswinton.savannademowok.barcodeintelligence.CreateBarcodeFragment;
-import com.zebra.jamesswinton.savannademowok.barcodeintelligence.UpcLookupFragment;
+import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.CreateBarcodeFragment;
+import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.UpcLookupFragment;
+import com.zebra.jamesswinton.savannademowok.apis.fdarecall.GetFoodRecallByUpcFragment;
 import com.zebra.jamesswinton.savannademowok.databinding.ActivityMainBinding;
-import com.zebra.jamesswinton.savannademowok.printers.GetAllPrintersFragment;
-import com.zebra.jamesswinton.savannademowok.scanning.DataWedgeUtilities;
+import com.zebra.jamesswinton.savannademowok.apis.printers.GetAllPrintersFragment;
+import com.zebra.jamesswinton.savannademowok.apis.printers.SendPrintJobFragment;
 import com.zebra.jamesswinton.savannademowok.scanning.ScannerInterface;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
   private static final String TAG = "MainActivity";
 
   // Constants
-  private static final int ALL_PERMISSIONS = 1;
+  private static final String DEV_PORTAL_URL = "https://developer.zebra.com/";
+  private static final String SAVANNA_GETTING_STARTED_URL = "https://developer.zebra.com/getting-started-0";
 
   // Static Variables
   public static boolean mZebraDevice = false;
@@ -93,6 +95,22 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  @Override
+  public void onBackPressed(){
+    if (mFragmentManager.getBackStackEntryCount() > 0) {
+      mFragmentManager.popBackStack();
+    } else {
+      new AlertDialog.Builder(this)
+        .setTitle("Confirm Exit")
+        .setMessage("Are you sure you want to exit the application?")
+        .setPositiveButton("EXIT", (dialogInterface, i) -> {
+          System.exit(1);
+        }).setNegativeButton("CANCEL", (dialogInterface, i) ->
+          dialogInterface.dismiss()
+        ).create().show();
+    }
+  }
+
   private void setDeviceAsZebraOrCommercial() {
     mZebraDevice = Build.MANUFACTURER.contains("Zebra Technologies") ||
         Build.MANUFACTURER.contains("Motorola Solutions");
@@ -104,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
 
   public void showProgressBar(boolean visible) {
     mDataBinding.progressBar.setVisibility(visible ? View.VISIBLE : View.GONE);
+  }
+
+  public void addFragmentToBackStack(Fragment fragment, String tag) {
+    mFragmentManager.beginTransaction()
+        .replace(R.id.content_frame, fragment)
+        .addToBackStack(tag)
+        .commit();
   }
 
   /**
