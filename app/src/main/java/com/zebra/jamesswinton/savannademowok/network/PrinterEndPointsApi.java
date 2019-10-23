@@ -1,6 +1,8 @@
 package com.zebra.jamesswinton.savannademowok.network;
 
 import com.zebra.jamesswinton.savannademowok.apis.printers.pojos.AllPrinters;
+import com.zebra.jamesswinton.savannademowok.apis.printers.pojos.PrinterDetails;
+
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -29,6 +31,20 @@ public interface PrinterEndPointsApi {
       @Header("apikey") String apiKey,
       @Path("printerSN") String serialNumber,
       @Body RequestBody zpl
+  );
+
+  // Get Printer Details
+  @GET("printers-basic/{printerSN}")
+  Call<PrinterDetails> getPrinterDetilas(
+          @Header("apikey") String apiKey,
+          @Path("printerSN") String serialNumber
+  );
+
+  // Get Printer Odometer Details
+  @GET("printers-basic/{printerSN}/odometers")
+  Call<PrinterDetails> getPrinterOdometerDetails(
+          @Header("apikey") String apiKey,
+          @Path("printerSN") String serialNumber
   );
 
 }

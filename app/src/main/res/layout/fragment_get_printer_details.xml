@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <LinearLayout
+        android:id="@+id/base_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="4dp">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:weightSum="10"
+          android:layout_marginBottom="10dp">
+
+          <ImageView
+            android:id="@+id/barcode_icon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:src="@drawable/ic_qr_code"/>
+
+          <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/barcode_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:hint="Printer Serial *">
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:id="@+id/printer_serial"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:text=""/>
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <ImageView
+            android:id="@+id/scan_with_camera_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_scan_with_camera"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+          style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+          android:id="@+id/get_printer_details_button"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="10dp"
+          android:text="SEARCH"/>
+
+        <LinearLayout
+          android:id="@+id/empty_layout"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          tools:visibility="visible">
+
+          <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:tint="#9E9E9E"
+            android:src="@drawable/ic_search_printer"/>
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="14pt"
+            android:layout_margin="4dp"
+            android:text="Enter a serial number to load details"/>
+
+        </LinearLayout>
+
+        <ScrollView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <LinearLayout
+            android:id="@+id/details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="250dp">
+
+              <ImageView
+                android:id="@+id/printer_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="24dp"
+                android:src="@drawable/ic_printer"
+                tools:src="@drawable/printer_zd400"/>
+
+              <ImageView
+                android:id="@+id/printer_status"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_online"/>
+
+            </RelativeLayout>
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:textColor="@color/colorPrimary"
+              android:textStyle="bold"
+              android:text="Printer Details"/>
+
+            <LinearLayout
+              android:id="@+id/summary_details_layout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:weightSum="10">
+
+              <LinearLayout
+                android:id="@+id/printer_info_layout_col_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_marginEnd="2dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/printer_model_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Printer Model">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/printer_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="ZQ320"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/printer_name_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Printer Name">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/printer_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="XXZFJ173900409"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/mac_address_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Mac Address">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mac_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="AC:3F:A4:C8:59:FE"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/ip_address_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="IP Address">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ip_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="192.168.0.202"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+              </LinearLayout>
+
+              <LinearLayout
+                android:id="@+id/printer_info_layout_col_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_marginStart="2dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/link_os_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="LinkOS Version">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/link_os"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="4.0"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/firmware_version_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Firmware Version">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/firmware_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="V81.20.06Z"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/dots_per_min_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Dots / Min">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dots_per_min"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="8"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                  android:id="@+id/manufacture_date_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Manufacture Date">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/manufacture_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="none"
+                    android:editable="false"
+                    tools:text="09/25/2017"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+              </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:textColor="@color/colorPrimary"
+              android:textStyle="bold"
+              android:text="Printer Settings"/>
+
+            <LinearLayout
+              android:id="@+id/settings_details_layout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_available_ram_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Available RAM">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_available_ram"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="4.0MB (99%)"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_uptime_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Uptime">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_uptime"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="21 minutes, 43 seconds"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_reboot_reason_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Reboot Reason">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_reboot_reason"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="Printer reset command was issued"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_battery_level_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Battery Level">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_battery_level"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="56%"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_available_flash_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Available Flash">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_available_flash"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="47.8MB (100%)"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:text="Printer Odometer - Total"/>
+
+            <LinearLayout
+              android:id="@+id/odometer_details_layout_total"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_total_label_count_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_total_label_count"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="143"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_total_count_type_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Count Type">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_total_count_type"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="Integer"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+              android:textColor="@color/colorPrimary"
+              android:textStyle="bold"
+              android:text="Printer Odometer - Current User"/>
+
+            <LinearLayout
+              android:id="@+id/odometer_details_layout_current_user"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_current_user_label_count_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_current_user_label_count"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="143"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+              <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/printer_current_user_count_type_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Count Type">
+
+                <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/printer_current_user_count_type"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:inputType="none"
+                  android:editable="false"
+                  tools:text="Integer"/>
+
+              </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+          </LinearLayout>
+
+        </ScrollView>
+
+      </LinearLayout>
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/send_print_job_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_printer"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:backgroundTint="@color/colorPrimary"
+        app:tint="#FFF"/>
+
+    </RelativeLayout>
+
+  </FrameLayout>
+
+</layout>

@@ -86,22 +86,27 @@ public class GetAllPrintersAdapter extends RecyclerView.Adapter  {
 
         // Init Click Listener
         popup.setOnMenuItemClickListener(menuItem -> {
+          // Create Bundle
+          Bundle printerSerial = new Bundle();
+          printerSerial.putString(App.ARG_PRINTER_SERIAL, printer.getSerialNumber());
+
           // Handle Menu Options
           switch(menuItem.getItemId()) {
             case R.id.send_print_job:
-              // Create Bundle
-              Bundle printerDetails = new Bundle();
-              printerDetails.putString(App.ARG_PRINTER_SERIAL, printer.getSerialNumber());
-
               // Create Fragment with Bundle
               Fragment sendPrintJob = new SendPrintJobFragment();
-              sendPrintJob.setArguments(printerDetails);
+              sendPrintJob.setArguments(printerSerial);
 
               // Add Fragment to Back Stack
               ((MainActivity) mContext).addFragmentToBackStack(sendPrintJob, "SEND-PRINT-JOB");
               break;
             case R.id.get_printer_details:
+              // Create Fragment with Bundle
+              Fragment getPrinterDetailsFragment = new GetPrinterDetailsFragment();
+              getPrinterDetailsFragment.setArguments(printerSerial);
 
+              // Add Fragment to Back Stack
+              ((MainActivity) mContext).addFragmentToBackStack(getPrinterDetailsFragment, "GET-PRINTER-DETAILS");
               break;
             case R.id.get_printer_odometer:
 

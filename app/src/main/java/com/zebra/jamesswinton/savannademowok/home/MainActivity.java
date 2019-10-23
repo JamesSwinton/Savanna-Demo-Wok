@@ -27,6 +27,7 @@ import com.zebra.jamesswinton.savannademowok.R;
 import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.CreateBarcodeFragment;
 import com.zebra.jamesswinton.savannademowok.apis.barcodeintelligence.UpcLookupFragment;
 import com.zebra.jamesswinton.savannademowok.apis.fdarecall.GetFoodRecallByUpcFragment;
+import com.zebra.jamesswinton.savannademowok.apis.printers.GetPrinterDetailsFragment;
 import com.zebra.jamesswinton.savannademowok.databinding.ActivityMainBinding;
 import com.zebra.jamesswinton.savannademowok.apis.printers.GetAllPrintersFragment;
 import com.zebra.jamesswinton.savannademowok.apis.printers.SendPrintJobFragment;
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
           fragment = new GetAllPrintersFragment();
           break;
         case R.id.get_printer_details:
-
+          fragment = new GetPrinterDetailsFragment();
           break;
         case R.id.get_printer_odometer:
 
